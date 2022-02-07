@@ -21,6 +21,7 @@ function App() {
   useEffect(()=> {
     axios.get('https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=416bfc1ce2ef30fddf772844608e5506&hash=90900eab56908e7e6f18b44f11318803').then(res=>{
     setPersonajes(res.data.data.results)
+    console.log(res.data)
   }).catch(error=> console.log(error))
   },[])
 
@@ -30,16 +31,17 @@ function App() {
      <h1>Marvel</h1>
 
       {/* Elemento cards de bootstrap */}
-     <div className="row row-cols-1 row-cols-md-3 g-4">
+     <div className="row row-cols-1 row-cols-md-4 g-5">
        {/* Mapeamos los personajes de todo el array */}
        { personajes.map(per=>(
       
       <div className="col" key={per.id}>
       <div className="card" style={{width: "18rem" , height:"18rem"}}>
-       <img src={`${per.thumbnail.path}.${per.thumbnail.extension}`} className="card-img-top" 
-       style={{width:"100%", height: "80%"}} alt="" />
+          <img src={`${per.thumbnail.path}.${per.thumbnail.extension}`} className="card-img ball" 
+         style={{width:"100%", height: "80%"}} alt="" />
          <div className="card-body">
-           <p className="card-text">{per.name}</p>
+           <h5 className="card-title">{per.name}</h5>
+
          </div>
        </div>
      </div>
@@ -49,6 +51,7 @@ function App() {
     }
     </div>
     </div>
+    
   );
 }
 
